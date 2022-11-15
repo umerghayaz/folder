@@ -8,7 +8,20 @@ from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 from flask_mongoengine import MongoEngine
 #ModuleNotFoundError: No module named 'flask_mongoengine' = (venv) C:\flaskmyproject>pip install flask-mongoengine 
+from flask import Flask
+from flask_mongoengine import MongoEngine #ModuleNotFoundError: No module named 'flask_mongoengine' = (venv) C:\flaskmyproject>pip install flask-mongoengine 
 
+UPLOAD_FOLDER = 'static/uploads/'
+
+app = Flask(__name__)
+app.secret_key = "umer"
+app.config['MONGODB_SETTINGS'] = {
+    'db': 'crud',
+    'host': 'localhost',
+    'port': 27017
+}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg','png','JPG','JPEG','PNG','svg'}
 db = MongoEngine()
 db.init_app(app)
@@ -26,7 +39,7 @@ class User(db.Document):
     profile_pic = db.StringField()
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/', methods=['POST'])
 def upload_image():
     if 'file' not in request.files:
         flash('No file part')
@@ -42,9 +55,9 @@ def upload_image():
         usersave.save()
         print('upload_image filename: ' + filename)
         flash('Image successfully uploaded and displayed below')
-        o=url_for('static', filename='uploads/' + filename)
-        l = 'http://127.0.0.1:5000'+url_for('static', filename='uploads/' + filename)
-        print(l)
+        # o=url_for('static', filename='uploads/' + filename)
+        # l = 'http://127.0.0.1:5000'+url_for('static', filename='uploads/' + filename)
+        # print(l)
 
         return redirect(url_for('static', filename='uploads/' + filename), code=301)
     else:
