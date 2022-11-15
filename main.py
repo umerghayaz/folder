@@ -55,9 +55,9 @@ def upload_image():
         usersave.save()
         print('upload_image filename: ' + filename)
         flash('Image successfully uploaded and displayed below')
-        # o=url_for('static', filename='uploads/' + filename)
-        # l = 'http://127.0.0.1:5000'+url_for('static', filename='uploads/' + filename)
-        # print(l)
+        o=url_for('static', filename='uploads/' + filename)
+        l = 'http://127.0.0.1:5000'+url_for('static', filename='uploads/' + filename)
+        print(l)
 
         return redirect(url_for('static', filename='uploads/' + filename), code=301)
     else:
