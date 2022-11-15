@@ -7,7 +7,7 @@ from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 
 from flask import Flask
-# from flask_mongoengine import MongoEngine #ModuleNotFoundError: No module named 'flask_mongoengine' = (venv) C:\flaskmyproject>pip install flask-mongoengine 
+# from flask_mongoengine import MongoEngine #ModuleNotFoundError: No module named 'flask_mongoengine' = (venv) C:\flaskmyproject>pip install flask-mongoengine 
 
 UPLOAD_FOLDER = 'static/uploads/'
 
@@ -20,7 +20,7 @@ app.secret_key = "umer"
 # }
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-ALLOWED_EXTENSIONS = {'jpg', 'jpeg','png','JPG','JPEG','PNG','svg'}
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg','png','JPG','JPEG','PNG','svg','pdf'}
 # db = MongoEngine()
 # db.init_app(app)
 
@@ -55,7 +55,7 @@ def upload_image():
         flash('Image successfully uploaded and displayed below')
         o=url_for('static', filename='uploads/' + filename)
         l = 'https://myupla.herokuapp.com/'+url_for('static', filename='uploads/' + filename)
-        print(l)
+        print('url is',l)
 
         return redirect(url_for('static', filename='uploads/' + filename), code=301)
     else:
