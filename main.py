@@ -26,7 +26,7 @@ class User(db.Document):
     profile_pic = db.StringField()
 
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST', 'GET'])
 def upload_image():
     if 'file' not in request.files:
         flash('No file part')
