@@ -24,8 +24,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','wav','mpeg','mp3','mp4'])
 # db = MongoEngine()
 # db.init_app(app)
-Token = environ['MESSAGEBIRD_ACCESS_KEY']
-id = environ['phone_number_id']
+
 
 
 def allowed_file(filename):
