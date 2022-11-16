@@ -20,7 +20,7 @@ app.secret_key = "umer"
 # }
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','wav'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif','wav','mpeg','mp3','mp4'])
 # db = MongoEngine()
 # db.init_app(app)
 
@@ -56,7 +56,7 @@ def upload_image():
         flash('Image successfully uploaded and displayed below')
         o=url_for('static', filename='uploads/' + filename)
         l = 'https://myupla.herokuapp.com'+url_for('static', filename='uploads/' + filename)
-        messenger = WhatsApp('EAAJVc3j40G8BAJwVDbOgeCdOBbV9LTbc5D7aSJZBsl62StREMBm4pRU26fjEVhDtQVH76mAUZBNnzM3xsynpmGtnw4lQHCeFshiX3pw0KTZAZAesIkXeE8sEP1ZAWNokomwt9qj3s5oj8kUU612qwcmPeAnNrAjO3ZBLpsVAQ3kLnsZAfcJgghnUlnT3rqZBjC4nVY7bbrCPzQZDZD',phone_number_id='110829038490956')
+        messenger = WhatsApp('EAAJVc3j40G8BAJj8tm4sebhstXp0X6976uQqMJMRhmgCejIwfbZB2aPKovIxWDH5apRN1h9D6MxDFurIbzOu2gUbGFfIkSZBZBx23mCpdFfQMTsQhyZBC6IzCcKESJ8HFMwGxvqQsXPzFzig1WW1EPjxzNb469y8ggEDt21Na88gZBOUnzHmZBv55LjKsCJTlO8nqiXfjODQZDZD',phone_number_id='110829038490956')
         # For sending  images
         # response = messenger.send_image(image=l,recipient_id="923462901820",)
         response = messenger.send_audio(audio=l,recipient_id="923462901820")
